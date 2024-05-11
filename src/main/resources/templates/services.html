@@ -1,17 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" th:replace="~{base :: parent(~{::#content})}">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Services page</title>
 </head>
 
 <body>
-    <h1>This is Services page</h1>
-    <hr>
-    <!-- using fragement -->
-    <div class="host-tag" th:insert="~{base :: parent('Ram', 'Sita')}"></div>
+    <section id="content">
+        <h1>This is service page</h1>
+    </section>
 </body>
 
 </html>

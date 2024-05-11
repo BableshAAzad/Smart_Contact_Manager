@@ -1,16 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Page</title>
-</head>
-<body>
+<html lang="en" th:replace="~{base :: parent(~{::#content})}">
 
-    <h1>This about page</h1>
-    <hr>
-    <!-- using fragement -->
-    <div class="host-tag" th:insert="~{base :: parent('Bablesh', 'Kumar')}"></div>
-    <!-- instead of insert we can also use 'replace' then host tag should not be visible -->
+<head>
+</head>
+
+<body>
+    <!-- Dynamic content -->
+    <section id="content">
+        <h1>This is about page</h1>
+    </section>
 </body>
+
 </html>

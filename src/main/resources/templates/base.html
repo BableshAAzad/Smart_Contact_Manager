@@ -1,8 +1,23 @@
-<div class="parent-tag" th:fragment="parent(x,y)">
-    <h1>This is parent fragment</h1>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem, nemo ab ratione deserunt, voluptate obcaecati
-        atque aut aliquam quos excepturi id nulla consequatur inventore veritatis? Unde enim aspernatur id dicta!</p>
-    <hr>
-    <p>value of x : <span th:text="${x}"></span></p>
-    <p>value of y : <span th:text="${y}"></span></p>
-</div>
+<!DOCTYPE html>
+<html lang="en" th:fragment="parent(content)" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base page</title>
+    <!-- ^flow bite css -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" data-th-href="@{'/css/output.css'}" />
+</head>
+
+<body>
+    <!-- main containt -->
+    <section data-th-replace="${content}"></section>
+
+
+    <!-- ^ flow bite javaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+</body>
+
+</html>
