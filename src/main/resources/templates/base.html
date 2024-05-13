@@ -12,8 +12,18 @@
 </head>
 
 <body>
-    <!-- main containt -->
+    <!-- ~ common header start -->
+    <div data-th-replace="navbar :: navbarf"></div>
+    <!-- ~ common header end -->
+
+
+    <!-- main contain -->
+<div class="p-4">
     <section data-th-replace="${content}"></section>
+</div>
+
+    <!-- ! common footer start  -->
+    <!-- ! common footer end  -->
 
 
     <!-- ^ flow bite javaScript -->
