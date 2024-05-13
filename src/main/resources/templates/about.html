@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" th:replace="~{base :: parent(~{::#content})}">
+<html lang="en" th:replace="~{base :: parent(~{::#content},~{::title},~{::script})}">
 
 <head>
+    <title>About Page</title>
 </head>
 
 <body>
@@ -9,6 +10,9 @@
     <section id="content">
         <h1>This is about page</h1>
     </section>
+    <script>
+        console.log("About page clg");
+    </script>
 </body>
 
 </html>
