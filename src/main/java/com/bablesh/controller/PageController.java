@@ -3,6 +3,7 @@ package com.bablesh.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class PageController {
@@ -48,6 +49,65 @@ public class PageController {
     public String signupPage() {
         System.out.println("singup page loading.....");
         return "signup";
+    }
+
+    // ^ processing register
+    @PostMapping("/do-register")
+    // public String processRegister(@Valid @ModelAttribute UserForm userForm,
+    // BindingResult rBindingResult,
+    // HttpSession session) {
+    public String processRegister() {
+        System.out.println("Processing registration");
+        // fetch form data
+        // UserForm
+        // System.out.println(userForm);
+
+        // validate form data
+        // if (rBindingResult.hasErrors()) {
+        // return "register";
+        // }
+
+        // TODO::Validate userForm[Next Video]
+
+        // save to database
+
+        // userservice
+
+        // UserForm--> User
+        // User user = User.builder()
+        // .name(userForm.getName())
+        // .email(userForm.getEmail())
+        // .password(userForm.getPassword())
+        // .about(userForm.getAbout())
+        // .phoneNumber(userForm.getPhoneNumber())
+        // .profilePic(
+        // "https://www.learncodewithdurgesh.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fdurgesh_sir.35c6cb78.webp&w=1920&q=75")
+        // .build();
+
+        // User user = new User();
+        // user.setName(userForm.getName());
+        // user.setEmail(userForm.getEmail());
+        // user.setPassword(userForm.getPassword());
+        // user.setAbout(userForm.getAbout());
+        // user.setPhoneNumber(userForm.getPhoneNumber());
+        // user.setProfilePic(
+        // "https://www.learncodewithdurgesh.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fdurgesh_sir.35c6cb78.webp&w=1920&q=75");
+
+        // User savedUser = userService.saveUser(user);
+
+        // System.out.println("user saved :");
+
+        // message = "Registration Successful"
+
+        // add the message:
+
+        // Message message = Message.builder().content("Registration
+        // Successful").type(MessageType.green).build();
+
+        // session.setAttribute("message", message);
+
+        // redirectto login page
+        return "redirect:/signup";
     }
 
 }
