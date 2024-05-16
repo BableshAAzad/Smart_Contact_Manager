@@ -31,6 +31,7 @@ public class UserForm {
     private String password;
 
     @Size(min = 8, max = 12, message = "Invalid Phone Number")
+    @NotBlank(message = "Phone number is required")
     private String phoneNumber;
 
     @NotBlank(message = "About is required")

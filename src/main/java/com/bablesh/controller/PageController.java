@@ -3,6 +3,7 @@ package com.bablesh.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +15,7 @@ import com.bablesh.helper.MessageType;
 import com.bablesh.service.UserService;
 
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 
 @Controller
 public class PageController {
@@ -68,19 +70,17 @@ public class PageController {
 
     // ^ processing register
     @PostMapping("/do-register")
-    // public String processRegister(@Valid @ModelAttribute UserForm userForm,
-    // BindingResult rBindingResult,
-    // HttpSession session) {
-    public String processRegister(@ModelAttribute UserForm userForm, HttpSession session) {
+    public String processRegister(@Valid @ModelAttribute UserForm userForm, BindingResult rBindingResult,
+            HttpSession session) {
         System.out.println("Processing registration");
         // fetch form data
         // UserForm
         System.out.println(userForm);
 
         // validate form data
-        // if (rBindingResult.hasErrors()) {
-        // return "register";
-        // }
+        if (rBindingResult.hasErrors()) {
+        return "signup";
+        }
 
         // TODO::Validate userForm[Next Video]
 
@@ -90,14 +90,14 @@ public class PageController {
 
         // UserForm--> User
         // User user = User.builder()
-        //         .name(userForm.getName())
-        //         .email(userForm.getEmail())
-        //         .password(userForm.getPassword())
-        //         .about(userForm.getAbout())
-        //         .phoneNumber(userForm.getPhoneNumber())
-        //         .profilePic(
-        //                 "https://www.learncodewithdurgesh.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fdurgesh_sir.35c6cb78.webp&w=1920&q=75")
-        //         .build();
+        // .name(userForm.getName())
+        // .email(userForm.getEmail())
+        // .password(userForm.getPassword())
+        // .about(userForm.getAbout())
+        // .phoneNumber(userForm.getPhoneNumber())
+        // .profilePic(
+        // "https://www.learncodewithdurgesh.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fdurgesh_sir.35c6cb78.webp&w=1920&q=75")
+        // .build();
 
         User user = new User();
         user.setName(userForm.getName());
@@ -106,7 +106,7 @@ public class PageController {
         user.setAbout(userForm.getAbout());
         user.setPhoneNumber(userForm.getPhoneNumber());
         user.setProfilePic(
-        "https://www.learncodewithdurgesh.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fdurgesh_sir.35c6cb78.webp&w=1920&q=75");
+                "https://www.learncodewithdurgesh.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fdurgesh_sir.35c6cb78.webp&w=1920&q=75");
 
         User savedUser = userService.saveUser(user);
 
