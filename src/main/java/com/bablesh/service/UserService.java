@@ -1,24 +1,25 @@
 package com.bablesh.service;
 
-// import java.util.List;
-// import java.util.Optional;
+import java.util.List;
+import java.util.Optional;
 
-// import com.bablesh.entity.User;
+import com.bablesh.entity.User;
 
 public interface UserService {
-// User saveUser(User user);
 
-//     Optional<User> getUserById(String id);
+    User saveUser(User user);
 
-//     Optional<User> updateUser(User user);
+    Optional<User> getUserById(String id);
 
-//     void deleteUser(String id);
+    Optional<User> updateUser(User user);
 
-//     boolean isUserExist(String userId);
+    void deleteUser(String id);
 
-//     boolean isUserExistByEmail(String email);
+    boolean isUserExist(String userId);
 
-//     List<User> getAllUsers();
+    boolean isUserExistByEmail(String email);
+
+    List<User> getAllUsers();
 
     // add more methods here related user service[logic]
 }

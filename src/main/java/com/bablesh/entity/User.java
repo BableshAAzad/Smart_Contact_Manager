@@ -61,4 +61,12 @@ public class User {
 
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> roleList = new ArrayList<>();
+
+    public String getPassword(){
+        return this.password;
+    }
+
+    public boolean isEnabled(){
+        return this.enabled;
+    }
 }
