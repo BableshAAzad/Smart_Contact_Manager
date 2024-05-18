@@ -1,7 +1,13 @@
 package com.bablesh.entity;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -27,15 +33,15 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class User {
-     @Id
+public class User implements UserDetails {
+    @Id
     private String userId;
     @Column(name = "user_name", nullable = false)
 
     private String name;
     @Column(unique = true, nullable = false)
     private String email;
-    @Getter(AccessLevel.NONE)
+    @Getter(AccessLevel.NONE) // ! we externally deny to auto generate getter method by lombok
     private String password;
     @Column(length = 1000)
     private String about;
@@ -43,9 +49,9 @@ public class User {
     private String profilePic;
     private String phoneNumber;
 
-    @Getter(value = AccessLevel.NONE)
+    @Getter(value = AccessLevel.NONE) // ! we externally deny to auto generate getter method by lombok
     // information
-    private boolean enabled = true;
+    private boolean enabled = false;
 
     private boolean emailVerified = false;
     private boolean phoneVerified = false;
@@ -60,13 +66,55 @@ public class User {
     private List<Contact> contacts = new ArrayList<>();
 
     @ElementCollection(fetch = FetchType.EAGER)
-    private List<String> roleList = new ArrayList<>();
+    private List<String> roleList = new ArrayList<String>();
 
-    public String getPassword(){
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        // list of roles[USER,ADMIN]
+        // Collection of SimpGrantedAuthority[roles{ADMIN,USER}]
+        Collection<SimpleGrantedAuthority> roles = roleList.stream().map(role -> new SimpleGrantedAuthority(role))
+                .collect(Collectors.toList());
+        return roles;
+    }
+
+    @Override
+    public String getUsername() {
+        // throw new UnsupportedOperationException("Unimplemented method
+        // 'getUsername'");
+        return this.email;
+        // because we are used email id as a username
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        // throw new UnsupportedOperationException("Unimplemented method
+        // 'isAccountNonExpired'");
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        // throw new UnsupportedOperationException("Unimplemented method
+        // 'isAccountNonLocked'");
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        // throw new UnsupportedOperationException("Unimplemented method
+        // 'isCredentialsNonExpired'");
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        // throw new UnsupportedOperationException("Unimplemented method 'isEnabled'");
+        return this.enabled;
+    }
+
+    @Override
+    public String getPassword() {
         return this.password;
     }
 
-    public boolean isEnabled(){
-        return this.enabled;
-    }
 }

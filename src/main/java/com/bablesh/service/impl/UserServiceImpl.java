@@ -7,9 +7,11 @@ import java.util.UUID;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.bablesh.entity.User;
+import com.bablesh.helper.AppConstants;
 import com.bablesh.helper.ResourceNotFoundException;
 import com.bablesh.repository.UserRepo;
 import com.bablesh.service.UserService;
@@ -18,6 +20,9 @@ import com.bablesh.service.UserService;
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepo userRepo;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     // @Autowired
     // private PasswordEncoder passwordEncoder;
@@ -31,13 +36,15 @@ public class UserServiceImpl implements UserService {
         user.setUserId(userId);
         // password encode
         // user.setPassword(userId);
-        // user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         // set the user role
 
         // user.setRoleList(List.of(AppConstants.ROLE_USER));
 
-        // logger.info(user.getProvider().toString());
+        logger.info(user.getProvider().toString());
+
+        user.setRoleList(List.of(AppConstants.ROLE_USER));
 
         return userRepo.save(user);
     }
