@@ -51,7 +51,7 @@ public class User implements UserDetails {
 
     @Getter(value = AccessLevel.NONE) // ! we externally deny to auto generate getter method by lombok
     // information
-    private boolean enabled = false;
+    private boolean enabled = true;
 
     private boolean emailVerified = false;
     private boolean phoneVerified = false;
