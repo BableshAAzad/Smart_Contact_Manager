@@ -26,7 +26,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity
+@Entity(name = "user")
 @Table(name = "users")
 @Getter
 @Setter
@@ -36,17 +36,22 @@ import lombok.Setter;
 public class User implements UserDetails {
     @Id
     private String userId;
+    
     @Column(name = "user_name", nullable = false)
-
     private String name;
+
     @Column(unique = true, nullable = false)
     private String email;
+
     @Getter(AccessLevel.NONE) // ! we externally deny to auto generate getter method by lombok
     private String password;
+
     @Column(length = 1000)
     private String about;
+
     @Column(length = 1000)
     private String profilePic;
+
     private String phoneNumber;
 
     @Getter(value = AccessLevel.NONE) // ! we externally deny to auto generate getter method by lombok
@@ -54,6 +59,7 @@ public class User implements UserDetails {
     private boolean enabled = true;
 
     private boolean emailVerified = false;
+
     private boolean phoneVerified = false;
 
     @Enumerated(value = EnumType.STRING)
@@ -79,36 +85,27 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        // throw new UnsupportedOperationException("Unimplemented method
-        // 'getUsername'");
         return this.email;
         // because we are used email id as a username
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        // throw new UnsupportedOperationException("Unimplemented method
-        // 'isAccountNonExpired'");
         return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        // throw new UnsupportedOperationException("Unimplemented method
-        // 'isAccountNonLocked'");
         return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        // throw new UnsupportedOperationException("Unimplemented method
-        // 'isCredentialsNonExpired'");
         return true;
     }
 
     @Override
     public boolean isEnabled() {
-        // throw new UnsupportedOperationException("Unimplemented method 'isEnabled'");
         return this.enabled;
     }
 
