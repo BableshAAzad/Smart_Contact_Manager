@@ -14,6 +14,8 @@ import com.bablesh.service.impl.SecurityCustomUserDetailService;
 
 @Configuration
 public class SecurityConfig {
+    @Autowired
+    private OauthenticationSuccessHandler oauthenticationSuccessHandler;
     // create user and login using java code with in memory service
     // @Bean
     // public UserDetailsService userDetailsService() {
@@ -88,6 +90,12 @@ public class SecurityConfig {
         httpSecurity.logout(logoutForm -> {
             logoutForm.logoutUrl("/do-logout");
             logoutForm.logoutSuccessUrl("/login?logout=true");
+        });
+        // ! oath configuration
+        // httpSecurity.oauth2Login(Customizer.withDefaults());
+        httpSecurity.oauth2Login(oauth->{
+            oauth.loginPage("/login");
+            oauth.successHandler(oauthenticationSuccessHandler);
         });
 
         return httpSecurity.build();
