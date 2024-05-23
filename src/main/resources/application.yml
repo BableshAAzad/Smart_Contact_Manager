@@ -31,7 +31,7 @@ spring:
 # github configuration
           github:
              client-name : github
-             client-id : 575184964404-m7vi0sa9
-             client-secret : GOCSPX-xy_KV
+             client-id : Iv23li1CPlmTy9vUMaHZ
+             client-secret : f337bedee4bd93e4607eda695bdd3417cda0873d
              scope : email,profile
 
