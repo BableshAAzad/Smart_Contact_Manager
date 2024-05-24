@@ -65,7 +65,7 @@ public class OauthenticationSuccessHandler implements AuthenticationSuccessHandl
         // new DefaultRedirectStrategy().sendRedirect(request, response,
         // "/user/profile");
 
-        logger.info("OAuthAuthenicationSuccessHandler");
+        // logger.info("OAuthAuthenicationSuccessHandler");
 
         // identify the provider
 
@@ -73,13 +73,13 @@ public class OauthenticationSuccessHandler implements AuthenticationSuccessHandl
 
         String authorizedClientRegistrationId = oauth2AuthenicationToken.getAuthorizedClientRegistrationId();
 
-        logger.info(authorizedClientRegistrationId);
+        // logger.info(authorizedClientRegistrationId);
 
         var oauthUser = (DefaultOAuth2User) authentication.getPrincipal();
 
-        oauthUser.getAttributes().forEach((key, value) -> {
-            logger.info(key + " : " + value);
-        });
+        // oauthUser.getAttributes().forEach((key, value) -> {
+        //     logger.info(key + " : " + value);
+        // });
 
         User user = new User();
         user.setUserId(UUID.randomUUID().toString());
