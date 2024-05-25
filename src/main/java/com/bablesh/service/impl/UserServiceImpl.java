@@ -57,7 +57,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public Optional<User> updateUser(User user) {
 
-        User user2 = userRepo.findById(user.getUserId()).orElseThrow(() -> new ResourceNotFoundException("User not found"));
+        User user2 = userRepo.findById(user.getUserId())
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
         // update karenge user2 from user
         user2.setName(user.getName());
         user2.setEmail(user.getEmail());
@@ -78,7 +79,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteUser(String id) {
         User user2 = userRepo.findById(id)
-        .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
         userRepo.delete(user2);
     }
 
@@ -99,4 +100,8 @@ public class UserServiceImpl implements UserService {
         return userRepo.findAll();
     }
 
+    @Override
+    public User getUserByEmail(String email) {
+        return userRepo.findByEmail(email).orElse(null);
+    }
 }
