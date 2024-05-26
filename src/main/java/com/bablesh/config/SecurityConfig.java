@@ -14,8 +14,6 @@ import com.bablesh.service.impl.SecurityCustomUserDetailService;
 
 @Configuration
 public class SecurityConfig {
-    @Autowired
-    private OauthenticationSuccessHandler oauthenticationSuccessHandler;
     // create user and login using java code with in memory service
     // @Bean
     // public UserDetailsService userDetailsService() {
@@ -32,6 +30,9 @@ public class SecurityConfig {
     // }
     @Autowired
     private SecurityCustomUserDetailService securityCustomUserDetailService;
+
+    @Autowired
+    private OAuthAuthenicationSuccessHandler handler;
 
     // ^ configuration of authentication provider spring security
     @Bean
@@ -61,7 +62,7 @@ public class SecurityConfig {
             // or
             formLogin.loginPage("/login");
             formLogin.loginProcessingUrl("/authenticate");
-            formLogin.successForwardUrl("/user/dashboard");
+            formLogin.successForwardUrl("/user/profile");
             // formLogin.failureForwardUrl("/login?error=true");
             // formLogin.defaultSuccessUrl("/");
             formLogin.usernameParameter("email");
@@ -85,17 +86,17 @@ public class SecurityConfig {
             // }
             // });
         });
+
+        httpSecurity.oauth2Login(oauth -> {
+            oauth.loginPage("/login");
+            oauth.successHandler(handler);
+        });
+
         // * for logout page
         httpSecurity.csrf(AbstractHttpConfigurer::disable);
         httpSecurity.logout(logoutForm -> {
             logoutForm.logoutUrl("/do-logout");
             logoutForm.logoutSuccessUrl("/login?logout=true");
-        });
-        // ! oath configuration
-        // httpSecurity.oauth2Login(Customizer.withDefaults());
-        httpSecurity.oauth2Login(oauth->{
-            oauth.loginPage("/login");
-            oauth.successHandler(oauthenticationSuccessHandler);
         });
 
         return httpSecurity.build();

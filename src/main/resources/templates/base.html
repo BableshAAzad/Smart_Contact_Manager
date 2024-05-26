@@ -19,8 +19,24 @@
 
 <body class="dark:bg-gray-800 bg-gray-200 dark:text-white">
     <!-- ~ common header start -->
-    <div data-th-replace="navbar :: navbarf"></div>
+    <!-- ^ if user is loggedin -->
+     <div th:if="${loggedInUser}">
+       <div data-th-replace="~{user/user_navbar::user-navbar}"></div>
+     </div>
+     <!-- ^ if user is not loggedin -->
+    <div th:unless="${loggedInUser}">
+        <div data-th-replace="~{navbar :: navbarf}"></div>
+    </div>
     <!-- ~ common header end -->
+
+    <!-- ~ if user is loggedin : sidebar start -->
+     <div th:if="${loggedInUser}">
+        <div data-th-replace="~{user/sidebar :: sidebarDiv}"></div>
+     </div>
+     <div th:unless="${loggedInUser}">
+         <h1>User is not loggedin</h1>
+     </div>
+    <!-- ~ if user is loggedin : sidebar end -->
 
 
     <!-- main contain -->

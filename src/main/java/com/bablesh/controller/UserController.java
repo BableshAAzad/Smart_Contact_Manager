@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.bablesh.service.UserService;
@@ -21,14 +19,14 @@ public class UserController {
     private Logger logger = LoggerFactory.getLogger(UserController.class);
 
     // user dashbaord page
-    @PostMapping("/dashboard")
+    @RequestMapping("/dashboard")
     public String userDashboard() {
         System.out.println("User dashboard");
         return "user/dashboard";
     }
 
     // user profile page
-    @GetMapping("/profile")
+    @RequestMapping("/profile")
     public String userProfile(Model model, Authentication authentication) {
 
         System.out.println("User profile");

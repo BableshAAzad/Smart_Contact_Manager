@@ -1,15 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Profile</title>
-</head>
-<body>
-    <h1>User Profile page</h1>
-    <h1 data-th-text="${loggedInUser.name}"></h1>
-    <h1 data-th-text="${loggedInUser.email}"></h1>
+<html lang="en" th:replace="~{base :: parent(~{::#content},~{::title},~{::script})}">
 
-    <a data-th-href="@{/do-logout}">Logout</a>
+<head>
+    <title data-th-text="${loggedInUser.name}">Profile Page</title>
+    <!-- <title>User Navbar</title> -->
+</head>
+
+<body>
+    <!-- Dynamic content -->
+    <section id="content">
+        <h1>This is Profile page</h1>
+    </section>
+    <script>
+        console.log("This is a profile page script1");
+    </script>
 </body>
+
 </html>

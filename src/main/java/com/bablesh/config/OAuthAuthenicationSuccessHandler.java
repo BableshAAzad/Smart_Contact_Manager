@@ -24,48 +24,18 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 @Component
-public class OauthenticationSuccessHandler implements AuthenticationSuccessHandler {
+public class OAuthAuthenicationSuccessHandler implements AuthenticationSuccessHandler {
+
+    Logger logger = LoggerFactory.getLogger(OAuthAuthenicationSuccessHandler.class);
+
     @Autowired
     private UserRepo userRepo;
-    Logger logger = LoggerFactory.getLogger(OauthenticationSuccessHandler.class);
 
     @Override
-    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
-            Authentication authentication) throws IOException, ServletException {
-        // logger.info("OauthenticationSuccessHandler.....");
-        // DefaultOAuth2User user = (DefaultOAuth2User) authentication.getPrincipal();
-        // // logger.info(user.getName());
-        // // user.getAttributes().forEach((key, value)->{
-        // // logger.info("{} ::=> {}", key, value);
-        // // });
-        // // logger.info(user.getAttributes().toString());
-        // String email = user.getAttribute("email").toString();
-        // String name = user.getAttribute("name").toString();
-        // String picture = user.getAttribute("picture").toString();
+    public void onAuthenticationSuccess(HttpServletRequest request,
+            HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
 
-        // User user3 = userRepo.findByEmail(email).orElse(null);
-        // if (user3 == null) {
-        // // ^ create user and save database
-        // User user2 = new User();
-        // user2.setEmail(email);
-        // user2.setName(name);
-        // user2.setProfilePic(picture);
-        // user2.setPassword("password");
-        // user2.setUserId(UUID.randomUUID().toString());
-        // user2.setProvider(Providers.GOOGLE);
-        // user2.setEnabled(true);
-        // user2.setEmailVerified(true);
-        // user2.setProviderUserId(user.getName());
-        // user2.setRoleList(List.of(AppConstants.ROLE_USER));
-        // user2.setAbout("This account is created using Google...");
-
-        // userRepo.save(user2);
-        // logger.info("User Saved : " + email);
-        // }
-        // new DefaultRedirectStrategy().sendRedirect(request, response,
-        // "/user/profile");
-
-        // logger.info("OAuthAuthenicationSuccessHandler");
+        logger.info("OAuthAuthenicationSuccessHandler");
 
         // identify the provider
 
@@ -73,13 +43,13 @@ public class OauthenticationSuccessHandler implements AuthenticationSuccessHandl
 
         String authorizedClientRegistrationId = oauth2AuthenicationToken.getAuthorizedClientRegistrationId();
 
-        // logger.info(authorizedClientRegistrationId);
+        logger.info(authorizedClientRegistrationId);
 
         var oauthUser = (DefaultOAuth2User) authentication.getPrincipal();
 
-        // oauthUser.getAttributes().forEach((key, value) -> {
-        //     logger.info(key + " : " + value);
-        // });
+        oauthUser.getAttributes().forEach((key, value) -> {
+            logger.info(key + " : " + value);
+        });
 
         User user = new User();
         user.setUserId(UUID.randomUUID().toString());
@@ -115,11 +85,12 @@ public class OauthenticationSuccessHandler implements AuthenticationSuccessHandl
             user.setName(name);
             user.setProviderUserId(providerUserId);
             user.setProvider(Providers.GITHUB);
+
             user.setAbout("This account is created using github");
         }
 
         else if (authorizedClientRegistrationId.equalsIgnoreCase("linkedin")) {
-
+            System.out.println("demo");
         }
 
         else {
@@ -132,6 +103,9 @@ public class OauthenticationSuccessHandler implements AuthenticationSuccessHandl
         // linkedin
 
         /*
+         * 
+         * 
+         * 
          * DefaultOAuth2User user = (DefaultOAuth2User) authentication.getPrincipal();
          * 
          * logger.info(user.getName());
@@ -180,6 +154,7 @@ public class OauthenticationSuccessHandler implements AuthenticationSuccessHandl
         }
 
         new DefaultRedirectStrategy().sendRedirect(request, response, "/user/profile");
+
     }
 
 }
