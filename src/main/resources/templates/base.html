@@ -31,11 +31,11 @@
 
     <!-- ~ if user is loggedin : sidebar start -->
      <div th:if="${loggedInUser}">
-        <div data-th-replace="~{user/sidebar :: sidebarDiv}"></div>
+        <div data-th-replace="~{user/sidebar :: sidebar}"></div>
      </div>
-     <div th:unless="${loggedInUser}">
+     <!-- <div th:unless="${loggedInUser}">
          <h1>User is not loggedin</h1>
-     </div>
+     </div> -->
     <!-- ~ if user is loggedin : sidebar end -->
 
 
