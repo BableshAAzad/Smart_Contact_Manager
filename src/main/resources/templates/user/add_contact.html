@@ -30,8 +30,8 @@
                         </p>
 
                         <form method="post" class="mt-8" data-th-action="@{'/user/contacts/add'}"
-                            data-th-object="${contactForm}" >
-                            <!-- name form enctype="multipart/form-data" -->
+                            data-th-object="${contactForm}" enctype="multipart/form-data">
+                            <!-- name form  -->
                             <div class="mb-3">
                                 <label for="input-group-1"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contact
@@ -45,10 +45,10 @@
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         placeholder="name" />
                                 </div>
-                                <!-- <p class="text-red-500" data-th-if="${#fields.hasErrors('name')}"
+                                <p class="text-red-500" data-th-if="${#fields.hasErrors('name')}"
                                     data-th-errors="*{name}">
                                     Invalid Name
-                                </p> -->
+                                </p>
                             </div>
 
                             <!-- email form -->
@@ -65,10 +65,10 @@
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         placeholder="example@email.com" />
                                 </div>
-                                <!-- <p class="text-red-500" data-th-if="${#fields.hasErrors('email')}"
+                                <p class="text-red-500" data-th-if="${#fields.hasErrors('email')}"
                                     data-th-errors="*{email}">
                                     Invalid Name
-                                </p> -->
+                                </p>
                             </div>
 
                             <!-- phone number  -->
@@ -85,10 +85,10 @@
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         placeholder="7898300815" />
                                 </div>
-                                <!-- <p class="text-red-500" data-th-if="${#fields.hasErrors('phoneNumber')}"
+                                <p class="text-red-500" data-th-if="${#fields.hasErrors('phoneNumber')}"
                                     data-th-errors="*{phoneNumber}">
                                     Invalid Name
-                                </p> -->
+                                </p>
                             </div>
 
                             <!-- address -->
@@ -99,10 +99,10 @@
                                 <textarea rows="4" data-th-field="*{address}"
                                     class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     placeholder="Address of the contact"></textarea>
-                                <!-- <p class="text-red-500" data-th-if="${#fields.hasErrors('address')}"
+                                <p class="text-red-500" data-th-if="${#fields.hasErrors('address')}"
                                     data-th-errors="*{address}">
                                     Invalid Name
-                                </p> -->
+                                </p>
                             </div>
 
                             <!-- description -->
@@ -156,10 +156,10 @@
                                     class="block w-full mb-2 text-xs text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                                     type="file" />
 
-                                <!-- <p class="text-red-500" data-th-if="${#fields.hasErrors('contactImage')}"
+                                <p class="text-red-500" data-th-if="${#fields.hasErrors('contactImage')}"
                                     data-th-errors="*{contactImage}">
                                     Invalid Name
-                                </p> -->
+                                </p>
 
                                 <img class="max-h-52 mx-auto rounded-lg shadow m-3" src="" id="upload_image_preview"
                                     alt="" />
