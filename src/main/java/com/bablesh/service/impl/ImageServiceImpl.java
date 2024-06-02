@@ -2,12 +2,14 @@ package com.bablesh.service.impl;
 
 import java.io.IOException;
 
-import org.apache.tomcat.websocket.Transformation;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.bablesh.helper.AppConstants;
 import com.bablesh.service.ImageService;
+import com.cloudinary.Cloudinary;
+import com.cloudinary.Transformation;
+import com.cloudinary.utils.ObjectUtils;
 
 @Service
 public class ImageServiceImpl implements ImageService {

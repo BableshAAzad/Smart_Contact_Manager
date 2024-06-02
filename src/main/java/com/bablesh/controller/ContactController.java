@@ -22,6 +22,7 @@ import com.bablesh.helper.Helper;
 import com.bablesh.helper.Message;
 import com.bablesh.helper.MessageType;
 import com.bablesh.service.ContactService;
+import com.bablesh.service.ImageService;
 import com.bablesh.service.UserService;
 
 import jakarta.servlet.http.HttpSession;
@@ -36,8 +37,8 @@ public class ContactController {
     @Autowired
     private ContactService contactService;
 
-    // @Autowired
-    // private ImageService imageService;
+    @Autowired
+    private ImageService imageService;
 
     @Autowired
     private UserService userService;
@@ -83,8 +84,8 @@ public class ContactController {
 
         String filename = UUID.randomUUID().toString();
 
-        // String fileURL = imageService.uploadImage(contactForm.getContactImage(),
-        // filename);
+        String fileURL = imageService.uploadImage(contactForm.getContactImage(),
+        filename);
 
         Contact contact = new Contact();
         contact.setName(contactForm.getName());
@@ -96,8 +97,8 @@ public class ContactController {
         contact.setUser(user);
         contact.setLinkedInLink(contactForm.getLinkedInLink());
         contact.setWebsiteLink(contactForm.getWebsiteLink());
-        // contact.setPicture(fileURL);
-        // contact.setCloudinaryImagePublicId(filename);
+        contact.setPicture(fileURL);
+        contact.setCloudinaryImagePublicId(filename);
         contactService.save(contact);
         System.out.println(contactForm);
 
