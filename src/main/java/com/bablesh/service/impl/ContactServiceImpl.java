@@ -16,7 +16,9 @@ import com.bablesh.repository.ContactRepo;
 import com.bablesh.service.ContactService;
 
 @Service
-public class ContactServiceImpl implements ContactService {
+public class ContactServiceImpl implements ContactService
+
+{
 
     @Autowired
     private ContactRepo contactRepo;

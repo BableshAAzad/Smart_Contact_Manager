@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import com.bablesh.entity.Contact;
 import com.bablesh.entity.User;
 
+
 public interface ContactService {
     // save contacts
     Contact save(Contact contact);
@@ -37,4 +38,5 @@ public interface ContactService {
     List<Contact> getByUserId(String userId);
 
     Page<Contact> getByUser(User user, int page, int size, String sortField, String sortDirection);
+
 }
