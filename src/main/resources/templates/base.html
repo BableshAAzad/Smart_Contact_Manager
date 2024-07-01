@@ -12,28 +12,28 @@
         integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-        <link rel="stylesheet" data-th-href="@{'/css/output.css'}" />
-        <link rel="stylesheet" data-th-href="@{'/css/style.css'}" />
+    <link rel="stylesheet" data-th-href="@{'/css/output.css'}" />
+    <link rel="stylesheet" data-th-href="@{'/css/style.css'}" />
 </head>
 <!-- class="dark:bg-gray-800 dark:text-white" -->
 
 <body class="dark:bg-gray-800 bg-gray-200 dark:text-white">
     <!-- ~ common header start -->
     <!-- ^ if user is loggedin -->
-     <div th:if="${loggedInUser}">
-       <div data-th-replace="~{user/user_navbar::user-navbar}"></div>
-     </div>
-     <!-- ^ if user is not loggedin -->
+    <div th:if="${loggedInUser}">
+        <div data-th-replace="~{user/user_navbar::user-navbar}"></div>
+    </div>
+    <!-- ^ if user is not loggedin -->
     <div th:unless="${loggedInUser}">
         <div data-th-replace="~{navbar :: navbarf}"></div>
     </div>
     <!-- ~ common header end -->
 
     <!-- ~ if user is loggedin : sidebar start -->
-     <div th:if="${loggedInUser}">
+    <div th:if="${loggedInUser}">
         <div data-th-replace="~{user/sidebar :: sidebar}"></div>
-     </div>
-     <!-- <div th:unless="${loggedInUser}">
+    </div>
+    <!-- <div th:unless="${loggedInUser}">
          <h1>User is not loggedin</h1>
      </div> -->
     <!-- ~ if user is loggedin : sidebar end -->
@@ -50,6 +50,10 @@
 
     <!-- ^ flow bite javaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+
+    <!-- ^SweetAlert2 cdn link -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <th:block data-th-replace="${script}"></th:block>
     <!-- * external javaScript -->
     <script data-th-src="@{'/js/script.js'}"></script>
