@@ -36,30 +36,24 @@ import lombok.Setter;
 public class User implements UserDetails {
     @Id
     private String userId;
-    
     @Column(name = "user_name", nullable = false)
-    private String name;
 
+    private String name;
     @Column(unique = true, nullable = false)
     private String email;
-
-    @Getter(AccessLevel.NONE) // ! we externally deny to auto generate getter method by lombok
+    @Getter(AccessLevel.NONE)
     private String password;
-
     @Column(length = 1000)
     private String about;
-
     @Column(length = 1000)
     private String profilePic;
-
     private String phoneNumber;
 
-    @Getter(value = AccessLevel.NONE) // ! we externally deny to auto generate getter method by lombok
+    @Getter(value = AccessLevel.NONE)
     // information
     private boolean enabled = true;
 
     private boolean emailVerified = false;
-
     private boolean phoneVerified = false;
 
     @Enumerated(value = EnumType.STRING)
@@ -72,7 +66,7 @@ public class User implements UserDetails {
     private List<Contact> contacts = new ArrayList<>();
 
     @ElementCollection(fetch = FetchType.EAGER)
-    private List<String> roleList = new ArrayList<String>();
+    private List<String> roleList = new ArrayList<>();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -83,10 +77,12 @@ public class User implements UserDetails {
         return roles;
     }
 
+    // for this project:
+    // email id hai wahi hamare username
+
     @Override
     public String getUsername() {
         return this.email;
-        // because we are used email id as a username
     }
 
     @Override
